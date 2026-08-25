@@ -24,7 +24,7 @@ class ASTEncoder(nn.Module):
         if self.frozen: self.ast.eval()
         return self
 
-    def forward(self, waveforms):
+    def forward(self, waveforms, return_frames=False):
         if torch.is_tensor(waveforms):
             wl = [w.detach().float().cpu().numpy() for w in waveforms]
         else:
@@ -35,7 +35,27 @@ class ASTEncoder(nn.Module):
             with torch.no_grad(): out = self.ast(iv)
         else:
             out = self.ast(iv)
-        return {"clip_embedding": out.pooler_output}
+        res = {"clip_embedding": out.pooler_output}
+        if return_frames:
+            res["frame_features"] = self._frame_features(out.last_hidden_state)
+        return res
+
+    def _frame_features(self, last_hidden_state):
+        """AST prepends 2 tokens (CLS + distillation) to a freq x time patch grid.
+        Drop them, pool over the frequency axis -> a time-aligned sequence [B, T, D]
+        (~100 ms/frame for the 10s AudioSet model). Falls back to the raw patch
+        sequence if the grid dimensions can't be inferred."""
+        cfg = self.ast.config
+        x = last_hidden_state[:, 2:, :]                      # drop CLS + distill
+        B, N, D = x.shape
+        try:
+            f = (cfg.num_mel_bins - cfg.patch_size) // cfg.frequency_stride + 1
+            t = (cfg.max_length - cfg.patch_size) // cfg.time_stride + 1
+            if f * t == N:
+                return x.reshape(B, f, t, D).mean(dim=1)     # [B, T, D] time-aligned
+        except Exception:
+            pass
+        return x
 
 
 class PretrainedAnomalyModel(nn.Module):
