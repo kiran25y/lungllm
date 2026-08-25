@@ -1,0 +1,28 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 14606.37it/s]
+[transformers] [1mASTModel LOAD REPORT[0m from: MIT/ast-finetuned-audioset-10-10-0.4593
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+classifier.dense.weight     | UNEXPECTED |  | 
+classifier.layernorm.bias   | UNEXPECTED |  | 
+classifier.dense.bias       | UNEXPECTED |  | 
+classifier.layernorm.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[audio-index] 0/11290
+[audio-index] 800/11290
+[audio-index] 1600/11290
+[audio-index] 2400/11290
+[audio-index] 3200/11290
+[audio-index] 4000/11290
+[audio-index] 4800/11290
+[audio-index] 5600/11290
+[audio-index] 6400/11290
+[audio-index] 7200/11290
+[audio-index] 8000/11290
+[audio-index] 8800/11290
+[audio-index] 9600/11290
+[audio-index] 10400/11290
+[audio-index] 11200/11290
+[audio-index] 11290 clips (dim 768) -> data/rag/index/audio.faiss

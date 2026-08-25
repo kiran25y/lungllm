@@ -1,0 +1,4 @@
+events: [normal, wheeze, crackle, both]
+split: {scheme: patient_aware, ratios: {train: 0.7, val: 0.1, test: 0.2}, seed: 1337}
+ood:   {train_datasets: [icbhi, hf_lung, sprsound], test_datasets: [mendeley]}
+unseen_disease: {held_out: [Asthma, Pneumonia]}

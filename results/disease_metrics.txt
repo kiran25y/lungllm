@@ -1,0 +1,71 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 7995.50it/s]
+[transformers] [1mASTModel LOAD REPORT[0m from: MIT/ast-finetuned-audioset-10-10-0.4593
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+classifier.layernorm.weight | UNEXPECTED |  | 
+classifier.layernorm.bias   | UNEXPECTED |  | 
+classifier.dense.weight     | UNEXPECTED |  | 
+classifier.dense.bias       | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+== checkpoints/sft/ast_multitask.pt | data/splits/test.parquet ==
+n=2101  acc=0.931  majority_base_rate=0.908  MACRO_F1=0.397  BALANCED_ACC=0.438
+   Asthma                     n=  21  recall=0.762  f1=0.681
+   Bronchiectasis             n=   6  recall=0.333  f1=0.143
+   Bronchiolitis              n=  28  recall=0.107  f1=0.194
+   COPD                       n=1908  recall=0.975  f1=0.982
+   Healthy                    n=  94  recall=0.681  f1=0.637
+   Heart Failure              n=  15  recall=0.600  f1=0.500
+   Pneumonia                  n=   6  recall=0.000  f1=0.000
+   URTI                       n=  23  recall=0.043  f1=0.041
+
+== checkpoints/sft/ast_multitask.pt | data/splits/ood_test.parquet ==
+n=333  acc=0.817  majority_base_rate=0.315  MACRO_F1=0.793  BALANCED_ACC=0.741
+   Asthma                     n=  96  recall=0.906  f1=0.866
+   Bronchiectasis             n=   9  recall=0.667  f1=0.800
+   COPD                       n=  27  recall=0.519  f1=0.636
+   Healthy                    n= 105  recall=0.867  f1=0.854
+   Heart Failure              n=  54  recall=0.889  f1=0.774
+   Heart Failure + Copd       n=   6  recall=0.500  f1=0.667
+   Heart Failure + Lung Fibro n=   3  recall=1.000  f1=1.000
+   Lung Fibrosis              n=  12  recall=0.667  f1=0.762
+   Pleural Effusion           n=   6  recall=1.000  f1=1.000
+   Pneumonia                  n=  15  recall=0.400  f1=0.571
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6163.31it/s]
+[transformers] [1mASTModel LOAD REPORT[0m from: MIT/ast-finetuned-audioset-10-10-0.4593
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+classifier.layernorm.weight | UNEXPECTED |  | 
+classifier.layernorm.bias   | UNEXPECTED |  | 
+classifier.dense.weight     | UNEXPECTED |  | 
+classifier.dense.bias       | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+== checkpoints/sft/ast_moe.pt | data/splits/test.parquet ==
+n=2101  acc=0.828  majority_base_rate=0.908  MACRO_F1=0.323  BALANCED_ACC=0.351
+   Asthma                     n=  21  recall=0.619  f1=0.542
+   Bronchiectasis             n=   6  recall=0.167  f1=0.091
+   Bronchiolitis              n=  28  recall=0.071  f1=0.100
+   COPD                       n=1908  recall=0.860  f1=0.921
+   Healthy                    n=  94  recall=0.851  f1=0.632
+   Heart Failure              n=  15  recall=0.200  f1=0.261
+   Pneumonia                  n=   6  recall=0.000  f1=0.000
+   URTI                       n=  23  recall=0.043  f1=0.039
+
+== checkpoints/sft/ast_moe.pt | data/splits/ood_test.parquet ==
+n=333  acc=0.772  majority_base_rate=0.315  MACRO_F1=0.540  BALANCED_ACC=0.494
+   Asthma                     n=  96  recall=0.906  f1=0.845
+   Bronchiectasis             n=   9  recall=0.556  f1=0.667
+   COPD                       n=  27  recall=0.667  f1=0.667
+   Healthy                    n= 105  recall=0.933  f1=0.891
+   Heart Failure              n=  54  recall=0.741  f1=0.678
+   Heart Failure + Copd       n=   6  recall=0.500  f1=0.667
+   Heart Failure + Lung Fibro n=   3  recall=0.000  f1=0.000
+   Lung Fibrosis              n=  12  recall=0.167  f1=0.250
+   Pleural Effusion           n=   6  recall=0.333  f1=0.500
+   Pneumonia                  n=  15  recall=0.133  f1=0.235

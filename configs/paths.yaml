@@ -1,0 +1,18 @@
+# Dataset folders — EDIT these to point at your data on disk.
+raw:
+  icbhi:     /workspace/lungllm/data/raw/icbhi              # *.wav + *.txt + patient_diagnosis.csv
+  hf_lung:   /workspace/lungllm/data/raw/HF_Lung           # *.wav + *_label.txt
+  sprsound:  /workspace/lungllm/data/raw/new_sprs/train    # *.wav + *.json
+  mendeley:  /workspace/lungllm/data/raw/mendeley          # "Audio Files/*.wav"
+icbhi_split_file: /workspace/lungllm/data/raw/icbhi/ICBHI_challenge_train_test.txt   # official split (download separately)
+
+processed:
+  manifests: /workspace/lungllm/data/processed/manifests
+  splits:    /workspace/lungllm/data/splits
+  reports:   /workspace/lungllm/data/rag/reports
+  index:     /workspace/lungllm/data/rag/index
+
+checkpoints:
+  aligned: /workspace/lungllm/checkpoints/aligned
+  sft:     /workspace/lungllm/checkpoints/sft
+outputs: /workspace/lungllm/outputs
