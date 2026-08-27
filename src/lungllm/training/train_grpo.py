@@ -13,6 +13,21 @@ import pandas as pd, torch
 from torch.utils.data import Dataset, DataLoader
 from lungllm.data.features import load_audio
 from lungllm.models.gen_model import GenModel
+# add imports
+from lungllm.eval.sed_factscore import acoustic_factscore
+from lungllm.eval.sed_grounding import clip_detections_from_label
+from lungllm.data.sed_records import _label_path_for
+
+# dataset __getitem__: return the row's audio_path + dataset instead of just event
+return w, r["audio_path"], str(r.get("dataset")), str(r.get("event"))
+
+# reward: prefer typed label grounding, fall back to clip event
+def clip_reward_dets(audio_path, dataset, event):
+    lp = _label_path_for(audio_path, dataset)
+    if lp is not None and lp.exists():
+        return clip_detections_from_label(str(lp), dataset, with_phase=True)   # typed+phase truth
+    return None, event   # fallback handled by acoustic_factscore(event=...)
+# in the loop: reward = acoustic_factscore(text, detections=dets, check_phase=True)
 
 KW = {"wheeze": ["wheez"], "crackle": ["crackl", "crepit", "rale"], "normal": ["no adventitious", "normal", "clear"]}
 def detected(ev):
